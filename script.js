@@ -120,7 +120,7 @@ class Perceel {
         //console.log(j);
         this.gg = await j.results[0].grondGebruik;
         let ts = getTags(await this.gg);
-        for (let tsi in ts){
+        for (let tsi of ts){
             console.log(tsi);
             if(tsi.includes("=")){
                 let tsis = tsi.split("=");
