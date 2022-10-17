@@ -35,7 +35,7 @@ function verwerkPerceel(tags){
             x.setAttribute("type", "button");
             c.appendChild(x);
             let cbadge = document.createElement("div");
-            cbadge.setAttribute("class", "position-absolute fs-5 font-monospace rounded p-2 top-0 end-0 me-5 mt-1 bg-secondary text-white");
+            cbadge.setAttribute("class", "position-absolute fs-6 font-monospace rounded p-1 top-0 end-0 me-5 mt-1 bg-secondary text-white");
             cbadge.innerHTML = $("#osmid").val();
             c.appendChild(cbadge);
             let cb = document.createElement("div");
