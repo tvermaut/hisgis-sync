@@ -19,7 +19,8 @@ function verwerkPerceel(tags){
     p.laadOSM(tags);
     fetch(p.OATURI())
         .then((response) => response.json())
-        .then((data) => p.laadOAT(data)).then(function(){
+        .then((data) => p.laadOAT(data))
+        .then(function(){
             let c = document.createElement("div");
             c.setAttribute("class", "card mt-2");
             c.setAttribute("style", "width: 25rem;");
@@ -116,9 +117,9 @@ class Perceel {
         }
     }
 
-    laadOAT(j){
+    async laadOAT(j){
         //console.log(j);
-        this.gg = j.results[0].grondGebruik;
+        this.gg = await j.results[0].grondGebruik;
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
