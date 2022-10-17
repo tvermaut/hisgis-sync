@@ -57,12 +57,16 @@ function checkWBi(wbid){
         .then((data) => verwerkUnit(data.entities));
 }
 
+function getNL(item){
+    return item.value;
+}
+
 function verwerkUnit(data){
     let q = data[Object.getOwnPropertyNames(data)[0]];
     if(q.claims.hasOwnProperty("P29")){
         for (let t of q.claims.P29){
             let tag = t.mainsnak.datavalue.value;
-            tagalias[tag] = q.aliases.nl;
+            tagalias[tag] = q.aliases.nl.map(getNL);
             console.log(tag);
             console.log(q.aliases.nl);
             }
