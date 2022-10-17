@@ -122,9 +122,13 @@ class Perceel {
         let ts = getTags(await this.gg);
         console.log(ts);
         for (let tsi in ts){
-            let tsis = tsi.split("=");
-            let tx = new Tag(tsis[0], tsis[1]);
-            this.tags.push(tx);
+            if(tsi.includes("=")){
+                let tsis = tsi.split("=");
+                
+                let tx = new Tag(tsis[0], tsis[1]);
+                tx.nieuw = true;
+                this.tags.push(tx);
+                }
             }
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
