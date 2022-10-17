@@ -73,7 +73,7 @@ function verwerkUnit(data){
     if(q.claims.hasOwnProperty("P29")){
         for (let t of q.claims.P29){
             let tag = t.mainsnak.datavalue.value;
-            if(!(tag in tagalias){tagalias[tag] = [];})
+            if(!(tag in tagalias)){tagalias[tag] = [];})
             tagalias[tag] += q.aliases.nl.map(getNL);
             }
     }
