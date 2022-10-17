@@ -3,7 +3,7 @@ async function sync(){
     let geotype = $("#geotype").val();
     await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => await verwerkWB(data.entities.Q101));
+        .then(data => (await verwerkWB(data.entities.Q101)));
     let p = await fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
