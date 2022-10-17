@@ -1,7 +1,7 @@
 async function sync(){
     let osmid = $("#osmid").val();
     let geotype = $("#geotype").val();
-    await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
+    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101))
         .then((data) => {
@@ -54,7 +54,7 @@ async function verwerkWB(j){
 }
 
 async function checkWBi(wbid){
-    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
+    await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
         .then((data) => verwerkUnit(data.entities));
 }
@@ -72,7 +72,7 @@ function getTags(gg){
 }
 
 function verwerkUnit(data){
-    let q = data[Object.getOwnPropertyNames(data)[0]];
+    let q = await data[Object.getOwnPropertyNames(data)[0]];
     if(q.claims.hasOwnProperty("P29")){
         for (let t of q.claims.P29){
             let tag = t.mainsnak.datavalue.value;
