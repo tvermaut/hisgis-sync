@@ -8,6 +8,7 @@ async function sync(){
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
+    console.log(getTags(p.gg));
 }
 
 var tagalias = [];
@@ -34,7 +35,7 @@ function verwerkPerceel(tags){
             c.appendChild(cb);
             $("#uitvoer").append(c);
             });
-    console.log(getTags(p.gg))
+    
 }
 
 function verwerkWB(j){
