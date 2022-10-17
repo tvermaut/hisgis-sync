@@ -6,7 +6,8 @@ function sync(){
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
      fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
-         .then(response => verwerkWB(response.json().entities.Q101));
+        .then(response => console.log(response.json()))
+        .then(response => verwerkWB(response.json().entities.Q101));
 }
 
 function verwerkPerceel(tags){
