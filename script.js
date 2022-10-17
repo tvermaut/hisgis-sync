@@ -10,6 +10,8 @@ function sync(){
         .then(data => verwerkWB(data.entities.Q101));
 }
 
+var tagalias = [];
+
 function verwerkPerceel(tags){
     var p = new Perceel();
     p.laadOSM(tags);
@@ -57,10 +59,19 @@ function checkWBi(wbid){
 
 function verwerkUnit(data){
     let q = data[Object.getOwnPropertyNames(data)[0]];
-    console.log(q);
+    if(q.claims.hasOwnProperty("P29")){
+        for (let t of q.claims.P29){
+            let tag = t.mainsnak.datavalue.value;
+            tagalias[tag] = q.aliases.nl;
+            console.log(tag);
+            console.log(q.aliases.nl);
+            }
+    }
+    
     // P29 = OSM-tag
     // P30 = tariefsoortnaam
-    // P36 = 
+    // P36 = tariefsoort
+    // P43 = kleur
 }
 
 class Perceel {
