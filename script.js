@@ -9,7 +9,7 @@ function sync(){
 function verwerkPerceel(tags){
     var p = new Perceel();
     p.laadOSM(tags);
-    await fetch(p.OATURI())
+    fetch(p.OATURI())
         .then((response) => response.json())
         .then((data) => p.laadOAT(data));
     let c = document.createElement("div");
