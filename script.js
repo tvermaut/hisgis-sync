@@ -127,7 +127,7 @@ class Perceel {
                 
                 let tx = new Tag(tsis[0], tsis[1]);
                 tx.nieuw = true;
-                this.tags.push(tx);
+                this.tags[tx.k] = tx;
                 }
             }
         if(!("oat:soort" in this.tags)){
