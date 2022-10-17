@@ -7,7 +7,7 @@ function sync(){
 }
 
 function verwerkPerceel(tags){
-    let p = new Perceel();
+    var p = new Perceel();
     p.laadOSM(tags);
     $("#uitvoer").append('<a href="' + p.OATURI() + '" target="_blank">Ga naar OAT-def</a>');
 }
@@ -33,7 +33,7 @@ class Perceel {
         }
     }
 
-    get OATURI(){
+    OATURI(){
         return 'https://oat.hisgis.nl/oat-ws/rest/percelen/' + this.gemeente + '/' + this.sectie + '/' + this.perceelnr + (this.perceelnrtvg ? '/' + this.perceelnrtvg : '');
     }
 }
