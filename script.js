@@ -9,7 +9,9 @@ function sync(){
 function verwerkPerceel(tags){
     var p = new Perceel();
     p.laadOSM(tags);
-    $("#uitvoer").append('<a href="' + p.OATURI() + '" target="_blank">Ga naar OAT-def</a>');
+    fetch(p.OATURI())
+        .then((response) => response.json())
+        .then((data) => p.laadOAT(data));
 }
 
 class Perceel {
@@ -31,6 +33,10 @@ class Perceel {
                 case 'kad:perceelnrtvg': this.perceelnrtvg = v; break;
             }
         }
+    }
+
+    laadOAT(j){
+        console.log(j);
     }
 
     OATURI(){
