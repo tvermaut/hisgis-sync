@@ -12,13 +12,21 @@ function verwerkPerceel(tags){
     fetch(p.OATURI())
         .then((response) => response.json())
         .then((data) => p.laadOAT(data));
-    let x = "";
-    x += '<div class="card mt-2" style="width: 18rem;"><div class="card-body"><h5 class="card-title">' + p.adres() + '</h5><ul class="list-group list-group-flush">';
-    for(let t of p.tags){
-        x += '<li class="list-group-item">' + t.k + ' = ' + t.v + '</li>';
-    }
-    x += '</ul></div>';
-    $("#uitvoer").append(x);
+    let c = document.createElement("div");
+    c.setAttribute("class", "card mt-2");
+    c.setAttribute("style", "width: 18rem;");
+    let cb = document.createElement("div");
+    cb.setAttribute("class", "card-body");
+    let ch = document.createElement("h5");
+    ch.setAttribute("class", "card-title");
+    ch.innerText = p.adres();
+    cb.appendChild(ch);
+    let cl = document.createElement("ul");
+    cl.setAttribute("class", "list-group list-group-flush");
+    for(let t of p.tags){cl.appendChild(tcard());}
+    cb.appendChild(cl);
+    c.appendChild(cb);
+    $("#uitvoer").append(c);
 }
 
 class Perceel {
@@ -71,5 +79,23 @@ class Tag{
 
     lbl() {
         return this.k + '=' + this.v 
+    }
+
+    card() {
+        let l = document.createElement("li");
+        l.setAttribute("class", "list-group-item");
+        let k = document.createElement("span");
+        k.setAttribute("class", "text-end");
+        k.innerText = this.k;
+        l.appendChild(k);
+        let e = document.createElement("span");
+        e.setAttribute("class", "text-center mx-2");
+        e.innerText = '=';
+        l.appendChild(e);
+        let v = document.createElement("span");
+        v.setAttribute("class", "text-start");
+        v.innerText = this.v;
+        l.appendChild(v);
+        return l
     }
 }
