@@ -119,6 +119,9 @@ class Perceel {
                     this.tags[k] = ti;
             }
         }
+        if(!(this.gemeente && this.sectie && this.perceelnr)){
+            $('#waarschuwing').html('het opgegeven id is GEEN perceel');
+        } else {$('#waarschuwing').html('');}
     }
 
     async laadOAT(j){
