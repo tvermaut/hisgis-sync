@@ -11,22 +11,23 @@ function verwerkPerceel(tags){
     p.laadOSM(tags);
     fetch(p.OATURI())
         .then((response) => response.json())
-        .then((data) => p.laadOAT(data));
-    let c = document.createElement("div");
-    c.setAttribute("class", "card mt-2");
-    c.setAttribute("style", "width: 18rem;");
-    let cb = document.createElement("div");
-    cb.setAttribute("class", "card-body");
-    let ch = document.createElement("h5");
-    ch.setAttribute("class", "card-title");
-    ch.innerText = p.adres();
-    cb.appendChild(ch);
-    let cl = document.createElement("ul");
-    cl.setAttribute("class", "list-group list-group-flush");
-    for(let t of p.tags){cl.appendChild(t.card());}
-    cb.appendChild(cl);
-    c.appendChild(cb);
-    $("#uitvoer").append(c);
+        .then((data) => p.laadOAT(data)).then(function(){
+            let c = document.createElement("div");
+            c.setAttribute("class", "card mt-2");
+            c.setAttribute("style", "width: 18rem;");
+            let cb = document.createElement("div");
+            cb.setAttribute("class", "card-body");
+            let ch = document.createElement("h5");
+            ch.setAttribute("class", "card-title");
+            ch.innerText = p.adres();
+            cb.appendChild(ch);
+            let cl = document.createElement("ul");
+            cl.setAttribute("class", "list-group list-group-flush");
+            for(let t of p.tags){cl.appendChild(t.card());}
+            cb.appendChild(cl);
+            c.appendChild(cb);
+            $("#uitvoer").append(c);
+            });
 }
 
 class Perceel {
