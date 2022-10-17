@@ -79,12 +79,12 @@ class Perceel {
     laadOAT(j){
         console.log(j);
         this.gg = j.results[0].grondGebruik;
-        if(!this.tags.includes("oat:soort")){
+        if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
             this.tags[t.k] = t;
-        } else if(this.tags.includes("oat:soort") && this.tags["oat:soort"].v != this.gg){
-            console.log("mismatch tussen |" + t.v + "| en |" + this.gg + "|")
+        } else if("oat:soort" in this.tags && this.tags["oat:soort"].v != this.gg){
+            console.log("mismatch tussen |" + t.v + "| (osm)    en |" + this.gg + "| (oat)")
             t.fout = true;
             t.v = "[" + t.v + " ≠ " + this.gg + "]";
         }
