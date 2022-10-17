@@ -97,17 +97,17 @@ class Tag{
 
     card() {
         let l = document.createElement("li");
-        l.setAttribute("class", "list-group-item");
+        l.setAttribute("class", "list-group-item" + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
         let k = document.createElement("span");
-        k.setAttribute("class", "text-end"  + (this.nieuw ? " bg-success bg-opacity-25" : "")  + (this.fout ? " text-danger" : ""));
+        k.setAttribute("class", "text-end");
         k.innerText = this.k;
         l.appendChild(k);
         let e = document.createElement("span");
-        e.setAttribute("class", "text-center mx-2"  + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
+        e.setAttribute("class", "text-center mx-2");
         e.innerText = '=';
         l.appendChild(e);
         let v = document.createElement("span");
-        v.setAttribute("class", "text-start" + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
+        v.setAttribute("class", "text-start");
         v.innerText = this.v;
         l.appendChild(v);
         return l
