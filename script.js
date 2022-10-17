@@ -1,7 +1,6 @@
 async function sync(){
     let osmid = $("#osmid").val();
     let geotype = $("#geotype").val();
-    history.pushState('', osmid, document.location.href+"?"+geotype.charAt(0) + osmid);
     fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
