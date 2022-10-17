@@ -66,7 +66,9 @@ function getNL(item){
 function getTags(gg){
     tags = [];
     for(let t in tagalias){
-        if (gg && gg in tagalias[t]){tags += t;}
+        if (gg && gg in tagalias[t]){
+            console.log("match gevonde: " + t)
+            tags.push(t);}
     }
     return tags;
 }
