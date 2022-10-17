@@ -24,7 +24,7 @@ function verwerkPerceel(tags){
             cb.appendChild(ch);
             let cl = document.createElement("ul");
             cl.setAttribute("class", "list-group list-group-flush");
-            for(let t of p.tags){cl.appendChild(t.card());}
+            for(let t in p.tags){cl.appendChild((p.tags[t]).card());}
             cb.appendChild(cl);
             c.appendChild(cb);
             $("#uitvoer").append(c);
