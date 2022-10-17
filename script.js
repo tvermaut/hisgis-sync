@@ -12,6 +12,11 @@ function verwerkPerceel(tags){
     fetch(p.OATURI())
         .then((response) => response.json())
         .then((data) => p.laadOAT(data));
+    $("#uitvoer").append('<p>' + p.adres() + '<ul>');
+    for(let t of p.tags){
+        $("#uitvoer").append('<li>' + t.lbl() + '</li>');
+    }
+    $("$uitvoer").append('</ul></p>')
 }
 
 class Perceel {
@@ -20,6 +25,8 @@ class Perceel {
         this.sectie = null;
         this.perceelnr = null;
         this.perceelnrtvg = null;
+        this.gg = null;
+        this.tags = [];
     }
 
     laadOSM(tags){
@@ -31,15 +38,36 @@ class Perceel {
                 case 'kad:sectie': this.sectie = v; break;
                 case 'kad:perceelnr': this.perceelnr = v; break;
                 case 'kad:perceelnrtvg': this.perceelnrtvg = v; break;
+                default:
+                    let ti = new Tag(k, v);
+                    this.tags.push(ti);
             }
         }
     }
 
     laadOAT(j){
-        console.log(j);
+        this.gg = j.results[0].grondGebruik;
     }
 
     OATURI(){
         return 'https://oat.hisgis.nl/oat-ws/rest/percelen/' + this.gemeente + '/' + this.sectie + '/' + this.perceelnr + (this.perceelnrtvg ? '/' + this.perceelnrtvg : '');
+    }
+
+    adres(){
+        return this.gemeente + ' ' + this.sectie + this.perceelnr + (this.perceelnrtvg ? '/' + this.perceelnrtvg : '');
+    }
+}
+
+class Tag{
+    k;
+    v;
+
+    constructor(k, v){
+        this.k = k;
+        this.v = v;
+    }
+
+    lbl() {
+        return this.k + '=' + this.v 
     }
 }
