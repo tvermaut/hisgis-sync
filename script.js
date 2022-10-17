@@ -51,11 +51,12 @@ function verwerkWB(j){
 function checkWBi(wbid){
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
-        .then((data) => verwerkUnit(data));
+        .then((data) => verwerkUnit(data.entities));
 }
 
 function verwerkUnit(data){
-    console.log(data);
+    let q = data[Object.getOwnPropertyNames(data)[0]];
+    console.log(q);
 }
 
 class Perceel {
