@@ -65,6 +65,7 @@ function getNL(item){
 
 function getTags(gg){
     var tagsi = [];
+    console.log("zoeken naar: " + gg);
     for(let t in tagalias){
         if (gg && gg in tagalias[t]){
             console.log("match gevonden: " + t)
