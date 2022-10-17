@@ -68,7 +68,7 @@ function getTags(gg){
     var tagsi = [];
     console.log("zoeken naar: " + gg);
     for(let t in tagalias){
-        if (gg && gg in tagalias[t]){
+        if (gg && tagalias[t].includes(gg)){
             console.log("match gevonden: " + t)
             tagsi.push(t);}
     }
