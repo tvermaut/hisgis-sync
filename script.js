@@ -13,7 +13,7 @@ $(function() {
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101))
         .then(data => {
-            $('#syncknop').innerHTML = "sync";
+            $('#syncknop').innerText = "sync";
             $('#syncknop').prop("disabled", false);
             $('#syncknop').prop("enabled", true);
             });
