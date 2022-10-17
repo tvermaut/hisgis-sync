@@ -1,18 +1,18 @@
 async function sync(){
     let osmid = $("#osmid").val();
     let geotype = $("#geotype").val();
-    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
-        .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101))
-        .then((data) => {
     fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
-    });
 }
 
 var tagalias = [];
+$( window ).load(function() {
+    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
+        .then(response => response.json())
+        .then(data => verwerkWB(data.entities.Q101));
+  });
 
 function verwerkPerceel(tags){
     var p = new Perceel();
@@ -37,7 +37,7 @@ function verwerkPerceel(tags){
             c.appendChild(cb);
             $("#uitvoer").append(c);
             });
-    console.log(getTags(p.gg));
+    //console.log(getTags(p.gg));
     //return p
 }
 
@@ -69,7 +69,6 @@ function getTags(gg){
     console.log("zoeken naar: " + gg);
     for(let t in tagalias){
         if (gg && tagalias[t].includes(gg)){
-            console.log("match gevonden: " + t)
             tagsi.push(t);}
     }
     return tagsi;
@@ -120,6 +119,7 @@ class Perceel {
     async laadOAT(j){
         //console.log(j);
         this.gg = await j.results[0].grondGebruik;
+        console.log(getTags(await gg));
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
