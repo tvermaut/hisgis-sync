@@ -23,9 +23,12 @@
       <div class="input-group-text">#</div>
       <input type="text" class="form-control" id="osmid" placeholder="way-id">
     </div>
-    <button id="syncknop" value="sync" onclick="sync()"  class="col btn btn-primary" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...</button>
+    <button id="syncknop" value="sync" onclick="sync()"  class="col btn btn-primary" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... (<span id="aantalgggeladen">0</span> x grondgebruik)</button>
     <div id="waarschuwing" class="col text-warning"></div>
-    <div class="col"><div class="rounded border border-warning bg-warning bg-opacity-25 mx-3">aangepast</div><div class="rounded border border-success bg-success bg-opacity-25 mx-3">nieuw</div></div>
+    <div class="col">
+      <div class="rounded border border-warning bg-warning bg-opacity-25 mx-3 my-1 text-center">aangepast</div>
+      <div class="rounded border border-success bg-success bg-opacity-25 mx-3 my-1 text-center">nieuw</div>
+    </div>
   </div>
   </div>
 

@@ -8,6 +8,7 @@ async function sync(){
 }
 
 var tagalias = [];
+var aantalGG = 0;
 $(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
@@ -86,6 +87,8 @@ async function verwerkUnit(data){
             let tag = t.mainsnak.datavalue.value;
             if(!(tag in tagalias)){tagalias[tag] = [];}
             tagalias[tag] = (tagalias[tag]).concat(q.aliases.nl.map(getNL));
+            aantalGG += q.aliases.nl.length;
+            $('#aantalgggeladen').html(aantalGG.toLocaleString("nl-NL"));
             }
     }
     
