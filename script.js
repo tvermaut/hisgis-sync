@@ -40,9 +40,9 @@ function verwerkWB(j){
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
         console.log(i);
-        if(i.hasOwnProperty("qualifiers") && i.qualifiers.lenght > 0){
-            for(let j of i.qualifiers){
-                if(j.hasOwnProperty("P36")){checkWBi(j.datavalue.value.id);}
+        if(i.hasOwnProperty("qualifiers") && i.qualifiers.lenght > 0 && i.qualifiers.hasOwnProperty("P36")){
+            for(let q of i.qualifiers.P36){
+                checkWBi(q.datavalue.value.id);
                 }
             }
         }
