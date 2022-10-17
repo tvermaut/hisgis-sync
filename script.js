@@ -86,7 +86,7 @@ class Perceel {
         } else if("oat:soort" in this.tags && this.tags["oat:soort"].v != this.gg){
             console.log("mismatch tussen |" + this.tags["oat:soort"].v + "| (osm)    en |" + this.gg + "| (oat)")
             this.tags["oat:soort"].fout = true;
-            this.tags["oat:soort"].v = "[" + t.v + " ≠ " + this.gg + "]";
+            this.tags["oat:soort"].v = "[" + this.tags["oat:soort"].v + " ≠ " + this.gg + "]";
         }
         //console.log(this);
     }
