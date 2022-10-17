@@ -1,4 +1,4 @@
 function sync(){
-    let osmid = $("osmid").value;
+    let osmid = $("osmid").val();
     alert(osmid);
 }
