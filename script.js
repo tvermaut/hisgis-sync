@@ -2,9 +2,11 @@ function sync(){
     let osmid = $("#osmid").val();
     let geotype = $("#geotype").val();
     fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
-    .then(response => response.text())
-    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-    .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
+        .then(response => response.text())
+        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
+    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
+        .then(response => verwerkWB(response.json().entities.Q101));
 }
 
 function verwerkPerceel(tags){
@@ -29,6 +31,23 @@ function verwerkPerceel(tags){
             c.appendChild(cb);
             $("#uitvoer").append(c);
             });
+}
+
+function verwerkWB(j){
+    console.log(j);
+    //ongebouwd
+    for(let i of j.claims.P33){
+        checkWBi(i.mainsnak.datavalue.value.id);
+        for(let j of i.qualifiers.P36){
+            checkWBi(j.datavalue.value.id);
+            }
+        }
+}
+
+function checkWBi(wbid){
+    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
+        .then((response) => response.json())
+        .then((data) => console.log(data));
 }
 
 class Perceel {
