@@ -119,7 +119,7 @@ class Perceel {
     async laadOAT(j){
         //console.log(j);
         this.gg = await j.results[0].grondGebruik;
-        console.log(getTags(await gg));
+        console.log(getTags(await this.gg));
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
