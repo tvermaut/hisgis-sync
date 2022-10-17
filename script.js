@@ -83,7 +83,7 @@ class Perceel {
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
             this.tags[t.k] = t;
-        } else if(this.tags.includes("oat:soort") && this.tags["oat:soort"] != this.gg){
+        } else if(this.tags.includes("oat:soort") && this.tags["oat:soort"].v != this.gg){
             t.fout = true;
             t.v = "[" + t.v + " ≠ " + this.gg + "]";
         }
