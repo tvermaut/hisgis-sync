@@ -1,7 +1,7 @@
 async function sync(){
     let osmid = $("#osmid").val();
     let geotype = $("#geotype").val();
-    await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
+    let p = await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101));
     await fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
@@ -35,7 +35,7 @@ function verwerkPerceel(tags){
             c.appendChild(cb);
             $("#uitvoer").append(c);
             });
-    
+    return p
 }
 
 function verwerkWB(j){
