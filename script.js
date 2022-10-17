@@ -38,20 +38,20 @@ function verwerkPerceel(tags){
     return p
 }
 
-function verwerkWB(j){
+async function verwerkWB(j){
     // P33 = ongebouwd
     for(let i of j.claims.P33){
-        checkWBi(i.mainsnak.datavalue.value.id);
+        await checkWBi(i.mainsnak.datavalue.value.id);
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
-                checkWBi(q.datavalue.value.id);
+                await checkWBi(q.datavalue.value.id);
                 }
             }
         }
     // P33
 }
 
-function checkWBi(wbid){
+async function checkWBi(wbid){
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
         .then((data) => verwerkUnit(data.entities));
