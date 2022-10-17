@@ -7,6 +7,7 @@ function sync(){
 }
 
 function verwerkPerceel(tags){
+    console.log(tags);
     for(let t of tags){
         $("#uitvoer").append('<p>' + t.getAttribute("k") + '=' + t.getAttribute("v") + '</p>');
     }
