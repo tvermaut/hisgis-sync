@@ -18,7 +18,7 @@ function verwerkPerceel(tags){
         x += '<li class="list-group-item">' + t.k + ' = ' + t.v + '</li>';
     }
     x += '</ul></div>';
-    $("$uitvoer").append(x);
+    $("#uitvoer").append(x);
 }
 
 class Perceel {
