@@ -12,11 +12,13 @@ function verwerkPerceel(tags){
     fetch(p.OATURI())
         .then((response) => response.json())
         .then((data) => p.laadOAT(data));
-    $("#uitvoer").append('<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title">' + p.adres() + '</h5><ul class="list-group list-group-flush">');
+    let x = "";
+    x += '<div class="card mt-2" style="width: 18rem;"><div class="card-body"><h5 class="card-title">' + p.adres() + '</h5><ul class="list-group list-group-flush">';
     for(let t of p.tags){
-        $("#uitvoer").append('<li class="list-group-item">' + t.k + ' = ' + t.v + '</li>');
+        x += '<li class="list-group-item">' + t.k + ' = ' + t.v + '</li>';
     }
-    $("$uitvoer").append('</ul></div>')
+    x += '</ul></div>';
+    $("$uitvoer").append(x);
 }
 
 class Perceel {
