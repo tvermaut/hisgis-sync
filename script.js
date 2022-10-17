@@ -8,6 +8,6 @@ function sync(){
 
 function verwerkPerceel(tags){
     for(let t of tags){
-        $("#uitvoer").text += t.getAttribute("k") + '=' + t.getAttribute("v");
+        $("#uitvoer").append('<p>' + t.getAttribute("k") + '=' + t.getAttribute("v") + '</p>');
     }
 }
