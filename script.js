@@ -35,11 +35,9 @@ function verwerkPerceel(tags){
 }
 
 function verwerkWB(j){
-    //console.log(j);
     //ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
-        console.log(i);
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.lenght > 0 && i.qualifiers.hasOwnProperty("P36")){
             for(let q of i.qualifiers.P36){
                 checkWBi(q.datavalue.value.id);
@@ -51,7 +49,7 @@ function verwerkWB(j){
 function checkWBi(wbid){
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
-        //.then((data) => console.log(data));
+        .then((data) => console.log(data));
 }
 
 class Perceel {
