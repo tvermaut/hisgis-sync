@@ -71,7 +71,7 @@ function getTags(gg){
     return tags;
 }
 
-function verwerkUnit(data){
+async function verwerkUnit(data){
     let q = await data[Object.getOwnPropertyNames(data)[0]];
     if(q.claims.hasOwnProperty("P29")){
         for (let t of q.claims.P29){
