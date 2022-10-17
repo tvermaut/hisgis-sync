@@ -84,6 +84,7 @@ class Perceel {
             t.nieuw = true;
             this.tags[t.k] = t;
         } else if(this.tags.includes("oat:soort") && this.tags["oat:soort"].v != this.gg){
+            console.log("mismatch tussen |" + t.v + "| en |" + this.gg + "|")
             t.fout = true;
             t.v = "[" + t.v + " ≠ " + this.gg + "]";
         }
