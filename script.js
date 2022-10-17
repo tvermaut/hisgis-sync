@@ -11,7 +11,12 @@ var tagalias = [];
 $(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101));
+        .then(data => verwerkWB(data.entities.Q101))
+        .then(data => {
+            $('#syncknop').innerHTML = "sync";
+            $('#syncknop').prop("disabled", false);
+            $('#syncknop').prop("enabled", true);
+            });
   });
 
 function verwerkPerceel(tags){
