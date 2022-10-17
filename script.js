@@ -67,6 +67,7 @@ class Perceel {
         } else if(this.oat_soort && this.oat_soort != this.gg){
             t.fout = true;
         }
+        console.log(this);
     }
 
     OATURI(){
