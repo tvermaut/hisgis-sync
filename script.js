@@ -132,10 +132,17 @@ class Perceel {
             console.log(tsi);
             if(tsi.includes("=")){
                 let tsis = tsi.split("=");
-                
                 let tx = new Tag(tsis[0], tsis[1]);
-                tx.nieuw = true;
-                this.tags[tx.k] = tx;
+                if(tx.k in this.tags){
+                    // als ook value gelijk: doe niets
+                    // anders: update
+                    this.tags[tx.k] = tx;
+                    this.tags[tx.k].update = true
+                } else {
+                    // nieuw aanmaken
+                    tx.nieuw = true;
+                    this.tags[tx.k] = tx;
+                    }
                 }
             }
         if(!("oat:soort" in this.tags)){
@@ -164,6 +171,7 @@ class Tag{
     v;
     nieuw;
     fout;
+    update;
 
     constructor(k, v){
         this.k = k;
@@ -176,7 +184,7 @@ class Tag{
 
     card() {
         let l = document.createElement("li");
-        l.setAttribute("class", "list-group-item" + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
+        l.setAttribute("class", "list-group-item" + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.update ? " bg-warning bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
         let k = document.createElement("span");
         k.setAttribute("class", "text-end");
         k.innerText = this.k;
