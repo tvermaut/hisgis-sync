@@ -31,10 +31,11 @@ function verwerkPerceel(tags){
             c.setAttribute("class", "card mt-2 position-relative");
             c.setAttribute("style", "width: 25rem;");
             let x = document.createElement("button");
-            x.setAttribute("class", "btn-close position-absolute top-0 start-100");
+            x.setAttribute("class", "btn-close position-absolute top-0 end-0");
             x.setAttribute("type", "button");
+            c.appendChild(x);
             let cbadge = document.createElement("div");
-            cbadge.setAttribute("class", "position-absolute top-0 start-90 bg-secondary text-white");
+            cbadge.setAttribute("class", "position-absolute top-0 end-0 me-3 mt-1 bg-secondary text-white");
             cbadge.innerHTML = $("#osmid").val();
             c.appendChild(cbadge);
             let cb = document.createElement("div");
