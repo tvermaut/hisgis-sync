@@ -63,7 +63,7 @@ function getNL(item){
 function getTags(gg){
     tags = [];
     for(let t in tagalias){
-        if (gg in tagalias[t]){tags += t;}
+        if (gg && gg in tagalias[t]){tags += t;}
     }
     return tags;
 }
