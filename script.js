@@ -35,8 +35,8 @@ function verwerkPerceel(tags){
 }
 
 function verwerkWB(j){
-    console.log("root Q101:")
-    console.log(j);
+    //console.log("root Q101:")
+    //console.log(j);
     //ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
@@ -55,7 +55,7 @@ function checkWBi(wbid){
 }
 
 function verwerkUnit(data){
-    
+    console.log(data);
 }
 
 class Perceel {
