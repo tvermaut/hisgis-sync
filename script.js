@@ -77,7 +77,7 @@ class Perceel {
     }
 
     laadOAT(j){
-        console.log(j);
+        //console.log(j);
         this.gg = j.results[0].grondGebruik;
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
@@ -85,10 +85,10 @@ class Perceel {
             this.tags[t.k] = t;
         } else if("oat:soort" in this.tags && this.tags["oat:soort"].v != this.gg){
             console.log("mismatch tussen |" + this.tags["oat:soort"].v + "| (osm)    en |" + this.gg + "| (oat)")
-            t.fout = true;
-            t.v = "[" + t.v + " ≠ " + this.gg + "]";
+            this.tags["oat:soort"].fout = true;
+            this.tags["oat:soort"].v = "[" + t.v + " ≠ " + this.gg + "]";
         }
-        console.log(this);
+        //console.log(this);
     }
 
     OATURI(){
