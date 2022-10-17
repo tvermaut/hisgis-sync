@@ -35,12 +35,12 @@ function verwerkPerceel(tags){
 }
 
 function verwerkWB(j){
-    console.log(j);
+    //console.log(j);
     //ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
-        for(let j of i.qualifiers.P36){
-            checkWBi(j.datavalue.value.id);
+        for(let j of i.qualifiers){
+            if(j.hasOwnProperty("P36")){checkWBi(j.datavalue.value.id);}
             }
         }
 }
