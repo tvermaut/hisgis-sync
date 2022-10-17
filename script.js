@@ -64,13 +64,13 @@ function getNL(item){
 }
 
 function getTags(gg){
-    tags = [];
+    var tagsi = [];
     for(let t in tagalias){
         if (gg && gg in tagalias[t]){
-            console.log("match gevonde: " + t)
-            tags.push(t);}
+            console.log("match gevonden: " + t)
+            tagsi.push(t);}
     }
-    return tags;
+    return tagsi;
 }
 
 async function verwerkUnit(data){
