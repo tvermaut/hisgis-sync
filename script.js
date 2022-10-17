@@ -35,6 +35,7 @@ class Perceel {
         this.sectie = null;
         this.perceelnr = null;
         this.perceelnrtvg = null;
+        this.oat_soort = null;
         this.gg = null;
         this.tags = [];
     }
@@ -48,6 +49,7 @@ class Perceel {
                 case 'kad:sectie': this.sectie = v; break;
                 case 'kad:perceelnr': this.perceelnr = v; break;
                 case 'kad:perceelnrtvg': this.perceelnrtvg = v; break;
+                case 'oat:soort': this.oat_soort = v; break;
                 default:
                     let ti = new Tag(k, v);
                     this.tags.push(ti);
@@ -57,6 +59,12 @@ class Perceel {
 
     laadOAT(j){
         this.gg = j.results[0].grondGebruik;
+        if(!this.oat_soort){
+            let t = new Tag("oat:soort",this.gg);
+            t.nieuw = true;
+        } else if(this.oat_soort && this.oat_soort != gg){
+            t.fout = true;
+        }
     }
 
     OATURI(){
@@ -71,6 +79,8 @@ class Perceel {
 class Tag{
     k;
     v;
+    nieuw;
+    fout;
 
     constructor(k, v){
         this.k = k;
@@ -85,15 +95,15 @@ class Tag{
         let l = document.createElement("li");
         l.setAttribute("class", "list-group-item");
         let k = document.createElement("span");
-        k.setAttribute("class", "text-end");
+        k.setAttribute("class", "text-end"  + (this.nieuw ? " bg-success bg-opacity-25" : "")  + (this.fout ? " text-danger" : ""));
         k.innerText = this.k;
         l.appendChild(k);
         let e = document.createElement("span");
-        e.setAttribute("class", "text-center mx-2");
+        e.setAttribute("class", "text-center mx-2"  + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
         e.innerText = '=';
         l.appendChild(e);
         let v = document.createElement("span");
-        v.setAttribute("class", "text-start");
+        v.setAttribute("class", "text-start" + (this.nieuw ? " bg-success bg-opacity-25" : "") + (this.fout ? " text-danger" : ""));
         v.innerText = this.v;
         l.appendChild(v);
         return l
