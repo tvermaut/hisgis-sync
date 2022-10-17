@@ -66,7 +66,7 @@ function getNL(item){
 
 function getTags(gg){
     var tagsi = [];
-    console.log("zoeken naar: " + gg);
+    //console.log("zoeken naar: " + gg);
     for(let t in tagalias){
         if (gg && tagalias[t].includes(gg)){
             tagsi.push(t);}
@@ -119,7 +119,12 @@ class Perceel {
     async laadOAT(j){
         //console.log(j);
         this.gg = await j.results[0].grondGebruik;
-        console.log(getTags(await this.gg));
+        let ts = getTags(await this.gg);
+        for (let tsi in ts){
+            let tsis = tsi.split("=");
+            let tx = new Tag(tsis[0], tsis[1]);
+            this.tags.push(tx);
+            }
         if(!("oat:soort" in this.tags)){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
