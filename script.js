@@ -37,7 +37,6 @@ class Perceel {
         this.sectie = null;
         this.perceelnr = null;
         this.perceelnrtvg = null;
-        this.oat_soort = null;
         this.gg = null;
         this.tags = [];
     }
@@ -51,10 +50,9 @@ class Perceel {
                 case 'kad:sectie': this.sectie = v; break;
                 case 'kad:perceelnr': this.perceelnr = v; break;
                 case 'kad:perceelnrtvg': this.perceelnrtvg = v; break;
-                case 'oat:soort': this.oat_soort = v; break;
                 default:
                     let ti = new Tag(k, v);
-                    this.tags.push(ti);
+                    this.tags[k] = ti;
             }
         }
     }
@@ -62,12 +60,13 @@ class Perceel {
     laadOAT(j){
         console.log(j);
         this.gg = j.results[0].grondGebruik;
-        if(!this.oat_soort){
+        if(!this.tags.includes("oat:soort")){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
-            this.tags.push(t);
-        } else if(this.oat_soort && this.oat_soort != this.gg){
+            this.tags[t.k] = t;
+        } else if(this.tags.includes("oat:soort") && this.tags["oat:soort"] != this.gg){
             t.fout = true;
+            t.v = "[" + t.v + " ≠ " + this.gg + "]";
         }
         console.log(this);
     }
