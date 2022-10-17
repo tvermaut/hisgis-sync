@@ -58,12 +58,13 @@ class Perceel {
     }
 
     laadOAT(j){
+        console.log(j);
         this.gg = j.results[0].grondGebruik;
         if(!this.oat_soort){
             let t = new Tag("oat:soort",this.gg);
             t.nieuw = true;
             this.tags.push(t);
-        } else if(this.oat_soort && this.oat_soort != gg){
+        } else if(this.oat_soort && this.oat_soort != this.gg){
             t.fout = true;
         }
     }
