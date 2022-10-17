@@ -39,6 +39,7 @@ function verwerkWB(j){
     //ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
+        console.log(i);
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.lenght > 0){
             for(let j of i.qualifiers){
                 if(j.hasOwnProperty("P36")){checkWBi(j.datavalue.value.id);}
@@ -50,7 +51,7 @@ function verwerkWB(j){
 function checkWBi(wbid){
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        //.then((data) => console.log(data));
 }
 
 class Perceel {
