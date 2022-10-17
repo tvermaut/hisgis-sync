@@ -3,12 +3,13 @@ async function sync(){
     let geotype = $("#geotype").val();
     await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101));
-    let p = await fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
+        .then(data => verwerkWB(data.entities.Q101))
+        .then((data) => {
+    await fetch('https://osm.hisgis.nl/api/0.6/' + geotype + '/' + osmid + '/')
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
-    console.log(getTags(p.gg));
+    }).then((data) => {console.log(getTags(p.gg));});
 }
 
 var tagalias = [];
