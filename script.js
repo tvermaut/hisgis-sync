@@ -28,8 +28,12 @@ function verwerkPerceel(tags){
         .then((data) => p.laadOAT(data))
         .then(function(){
             let c = document.createElement("div");
-            c.setAttribute("class", "card mt-2");
+            c.setAttribute("class", "card mt-2 position-relative");
             c.setAttribute("style", "width: 25rem;");
+            let cbadge = document.createElement("div");
+            cbadge.setAttribute("class", "position-absolute top-10 end-10 bg-secondary");
+            cbadge.innerHTML = $("#osmid").val();
+            c.appendChild(cbadge);
             let cb = document.createElement("div");
             cb.setAttribute("class", "card-body");
             let ch = document.createElement("h5");
