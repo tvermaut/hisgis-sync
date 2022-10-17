@@ -5,7 +5,7 @@ function sync(){
         .then(response => response.text())
         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         .then(data => verwerkPerceel(data.getElementById(osmid).getElementsByTagName("tag")));
-     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
+    fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101));
 }
@@ -34,16 +34,15 @@ function verwerkPerceel(tags){
             c.appendChild(cb);
             $("#uitvoer").append(c);
             });
+    console.log(getTags(p.gg))
 }
 
 function verwerkWB(j){
-    //console.log("root Q101:")
-    //console.log(j);
     // P33 = ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
-            for(let q of i.qualifiers.P36){
+            for(let q of i.qualifiers.P36){ // P36 = tariefsoort
                 checkWBi(q.datavalue.value.id);
                 }
             }
@@ -61,14 +60,21 @@ function getNL(item){
     return item.value;
 }
 
+function getTags(gg){
+    tags = [];
+    for(let t in tagalias){
+        if (gg in tagalias[t]){tags += t;}
+    }
+    return tags;
+}
+
 function verwerkUnit(data){
     let q = data[Object.getOwnPropertyNames(data)[0]];
     if(q.claims.hasOwnProperty("P29")){
         for (let t of q.claims.P29){
             let tag = t.mainsnak.datavalue.value;
-            tagalias[tag] = q.aliases.nl.map(getNL);
-            console.log(tag);
-            console.log(q.aliases.nl);
+            if(!(tag in tagalias){tagalias[tag] = [];})
+            tagalias[tag] += q.aliases.nl.map(getNL);
             }
     }
     
