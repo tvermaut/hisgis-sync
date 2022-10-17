@@ -14,7 +14,7 @@ function verwerkPerceel(tags){
         .then((response) => response.json())
         .then((data) => p.laadOAT(data)).then(function(){
             let c = document.createElement("div");
-            c.setAttribute("class", "card");
+            c.setAttribute("class", "card mt-2");
             c.setAttribute("style", "width: 18rem;");
             let cb = document.createElement("div");
             cb.setAttribute("class", "card-body");
