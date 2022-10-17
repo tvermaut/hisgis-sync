@@ -147,8 +147,10 @@ class Perceel {
                 if(tx.k in this.tags){
                     // als ook value gelijk: doe niets
                     // anders: update
-                    this.tags[tx.k] = tx;
-                    this.tags[tx.k].update = true
+                    if(this.tags[tx.k].v != tx.v){
+                        this.tags[tx.k] = tx;
+                        this.tags[tx.k].update = true
+                        }
                 } else {
                     // nieuw aanmaken
                     tx.nieuw = true;
