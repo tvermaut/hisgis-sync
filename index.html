@@ -10,12 +10,10 @@
   </head>
   <body>
 
-  <div>
+  <form id="formulier" class="row g-3">
     <label for="osmid">way-id</label>
     <input id="osmid" type="number" name="id" />
-  </div>
-  <div>
-    <input type="button" value="sync" onclick="sync()"/>
+    <button type="submit" value="sync" onclick="sync()"  class="btn btn-primary"/>
   </div>
 
 <div id="uitvoer"></div>

@@ -12,7 +12,7 @@ function verwerkPerceel(tags){
     fetch(p.OATURI())
         .then((response) => response.json())
         .then((data) => p.laadOAT(data));
-    $("#uitvoer").append('<table><tr><th colspan="2">' + p.adres() + '</th></tr><tr><th>k</th><th>v</th></tr>');
+    $("#uitvoer").append('<table><tr><th colspan="2">' + p.adres() + '</th></tr><tr><th style="text-align:right;">k</th><th>v</th></tr>');
     for(let t of p.tags){
         $("#uitvoer").append('<tr><td style="text-align:right;">' + t.k + '</td><td>=</td><td>' + t.v + '</td></tr>');
     }
