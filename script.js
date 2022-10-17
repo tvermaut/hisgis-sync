@@ -37,15 +37,16 @@ function verwerkPerceel(tags){
 function verwerkWB(j){
     //console.log("root Q101:")
     //console.log(j);
-    //ongebouwd
+    // P33 = ongebouwd
     for(let i of j.claims.P33){
         checkWBi(i.mainsnak.datavalue.value.id);
-        if(i.hasOwnProperty("qualifiers") && i.qualifiers.length > 0 && i.qualifiers.hasOwnProperty("P36")){
+        if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             for(let q of i.qualifiers.P36){
                 checkWBi(q.datavalue.value.id);
                 }
             }
         }
+    // P33
 }
 
 function checkWBi(wbid){
@@ -57,6 +58,9 @@ function checkWBi(wbid){
 function verwerkUnit(data){
     let q = data[Object.getOwnPropertyNames(data)[0]];
     console.log(q);
+    // P29 = OSM-tag
+    // P30 = tariefsoortnaam
+    // P36 = 
 }
 
 class Perceel {
